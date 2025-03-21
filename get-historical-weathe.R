@@ -1,7 +1,9 @@
 #included install packages first so we could use the library but only need once
 install.packages("httr")
 
-#misspelled so fixed that by adding an "r"
+#library misspelled so fixed that by adding an "r"
+#both of these packages are used to interact with the API with the httr allowing us to make http requests
+#jsonlite is used to process the JSON data returned by the API into a readable format
 library(httr)
 if (!require(jsonlite)) install.packages("jsonlite")
 library(jsonlite)

@@ -1,0 +1,28 @@
+---
+title: "Newman Debugging Report"
+author: "Alevtina Newman"
+date: "2025-03-21"
+output:
+  word_document: default
+  html_document: default
+---
+ Below is setting my working directory to put this file in the right folder on my computer. 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(root.dir="C:/Users/test/Desktop/Debug/r-debug-weather") 
+```
+
+For the sake of this exercise, I had to study the API website provided and the code documentation as well as searching other examples to understand the normal code flow. This helped identify most of the errors (typos) in the code. There were a few that took some trial and error (such as originally moving the dataframes within the "checks", or the if functions, and realizing the stop command kept the dataframes from being formed). 
+
+### Errors Encountered
+1. Library in library(httr) was misspelled, so I added an "r" for R to be able to find the function. 2. Within the params data frame (where we are setting the parameters of the request in a list form), temperature_unit was misspelled so I added an "a". This was checked on the Open-Meteo website under API documentation where this parameter is spelled. 
+3. In the API request section, query was misspelled as qury and required an "e". By fixing this allowed the items on the list to be passed to the API request.
+4. Where we are creating the df dataframe, format was misspelled and needed an "a". 
+5. In the same section, I had to change "hourly$temp" to "hourly$temperature_2m" to match the API language. This was found and checked in the API Response section of the Open-Meteo website under "Usage" in their code. 
+6. In the plotting section, I had to fix the first plot code to say "df$temperature" instead of "df$temp" for it to work. This was not intuitive to me since previously it was temperature_2m, but this was my first attempt at a change. 
+
+Note for why I fixed each of the misspellings above: R is extremely picky and will not run any code, find data, create dataframes, etc. that is not spelled correctly/in the format it knows. 
+
+### Additional Improvements
+1. I included install.packages("httr") at the beginning of the code so that the library(httr) code would work. This is like downloading an app before opening it, you only download (install.packages) once before opening (library) as many times as you want. 
+
+
